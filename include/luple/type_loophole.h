@@ -67,7 +67,13 @@ Usage:
 
 namespace ptgn {
 
+namespace type_traits {
+
+namespace class_members {
+
 namespace impl {
+
+  // Nicole.
 
   /*
     tag<T,N> generates friend declarations and helps with overload resolution.
@@ -136,18 +142,32 @@ namespace impl {
     More details are in the luple.h header.
   */
 
+  template <typename ...P>
+  struct parameter_pack_wrapper {
+      template <template <typename...> typename T> using apply = T<P...>;
+  };
+
   template<typename T, typename U>
   struct loophole_type_list;
 
   template<typename T, int... NN>
   struct loophole_type_list< T, std::integer_sequence<int, NN...> > {
     using type = luple_ns::type_list< decltype(loophole(tag<T, NN>{}))... >;
+    using types = parameter_pack_wrapper<decltype(loophole(tag<T, NN>{}))...>;
   };
+
+} // namespace impl
 
   template<typename T>
   using as_type_list =
-    typename loophole_type_list<T, std::make_integer_sequence<int, fields_number<T>(0)>>::type;
+    typename impl::loophole_type_list<T, std::make_integer_sequence<int, impl::fields_number<T>(0)>>::type;
 
-} // namespace impl
+  template<typename T>
+  using types =
+    typename impl::loophole_type_list<T, std::make_integer_sequence<int, impl::fields_number<T>(0)>>::types;
+
+} // namespace class_members
+
+} // namespace type_traits
 
 } // namespace ptgn

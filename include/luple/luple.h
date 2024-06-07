@@ -118,6 +118,10 @@ Usage:
 
 namespace ptgn {
 
+namespace type_traits {
+
+namespace class_members {
+
 namespace impl {
 
 
@@ -485,6 +489,10 @@ namespace impl {
   }
 
 } // namespace impl
+
+} // namespace class_members
+
+} // namespace type_traits
 
 } // namespace ptgn
 
