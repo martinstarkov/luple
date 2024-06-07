@@ -65,7 +65,9 @@ Usage:
 #include "luple.h"
 
 
-namespace loophole_ns {
+namespace ptgn {
+
+namespace impl {
 
   /*
     tag<T,N> generates friend declarations and helps with overload resolution.
@@ -146,6 +148,6 @@ namespace loophole_ns {
   using as_type_list =
     typename loophole_type_list<T, std::make_integer_sequence<int, fields_number<T>(0)>>::type;
 
-}
+} // namespace impl
 
-
+} // namespace ptgn

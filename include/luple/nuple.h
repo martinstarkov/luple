@@ -74,9 +74,9 @@ Usage:
 #include "luple.h"
 #include "intern.h"
 
+namespace ptgn {
 
-namespace nuple_ns {
-
+namespace impl {
 
   //filter template sorts nuple parameters into two lists: 
   //types (passed to luple) and names (used for looking up member index)
@@ -187,12 +187,6 @@ namespace nuple_ns {
     return as_nuple_( luple< TT... >{ std::move( args )... }, std::make_integer_sequence< int, sizeof...(TT)/2 >{} );
   }
 
-}
+} // namespace impl
 
-//import into global namespace
-
-using nuple_ns::nuple;
-using nuple_ns::get;
-using nuple_ns::as_nuple;
-
-
+} // namespace ptgn

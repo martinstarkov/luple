@@ -60,6 +60,9 @@ Usage:
 
 #define N3599
 
+namespace ptgn {
+
+namespace impl {
 
 namespace intern {
 
@@ -85,8 +88,11 @@ namespace intern {
     static const bool value = true;
   };
 
-}
+} // namespace intern
 
+} // namespace impl
+
+} // namespace ptgn
 
 #if !defined( _MSC_VER ) && defined( N3599 )
 
