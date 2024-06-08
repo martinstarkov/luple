@@ -152,8 +152,8 @@ namespace impl {
 
   template<typename T, int... NN>
   struct loophole_type_list< T, std::integer_sequence<int, NN...> > {
-    using type = luple_ns::type_list< decltype(loophole(tag<T, NN>{}))... >;
-    using types = parameter_pack_wrapper<decltype(loophole(tag<T, NN>{}))...>;
+    using type = type_list< decltype(loophole(tag<T, NN>{}))... >;
+    using types = parameter_pack_wrapper< decltype(loophole(tag<T, NN>{}))... >;
   };
 
 } // namespace impl
